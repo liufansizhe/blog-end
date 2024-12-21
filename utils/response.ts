@@ -3,7 +3,7 @@ export const responseFormatter = (req: any, res: any, next: any) => {
     // 格式化响应数据
     let responseData = {
       success: data?.success ?? true,
-      data: data?.data ?? data,
+      data: data?.data ?? null,
       message: data?.message ?? "",
     };
     // 如果data是Error类型，则认为是失败的响应

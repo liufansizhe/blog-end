@@ -6,6 +6,7 @@ export default (err: any, req: any, res: any, next: any) => {
     // 抛出401异常
     res.status(status).json({
       message: "token失效，请重新登录",
+      success: false,
       data: null,
     });
   } else {

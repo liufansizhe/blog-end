@@ -29,7 +29,7 @@ class Database {
     return this.database?.collection(collectionName).findOne(query);
   }
 
-  async insert(collectionName: string, document: Document) {
+  async insert(collectionName: string, document: any) {
     await this.connect();
     return this.database?.collection(collectionName).insertOne(document);
   }
