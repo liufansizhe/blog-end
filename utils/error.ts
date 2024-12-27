@@ -1,6 +1,5 @@
+//错误捕获
 export default (err: any, req: any, res: any, next: any) => {
-  // 自定义用户认证失败的错误返回
-  console.log("err===", req.headers);
   if (err && err.name === "UnauthorizedError") {
     const { status = 401, message } = err;
     // 抛出401异常

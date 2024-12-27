@@ -1,3 +1,4 @@
+//接口返回规范
 export const responseFormatter = (req: any, res: any, next: any) => {
   res.sendResponse = (data: any) => {
     // 格式化响应数据
