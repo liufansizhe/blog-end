@@ -1,5 +1,5 @@
 import {
-  getPublicKey,
+  getCode,
   getUserInfo,
   login,
   logout,
@@ -10,10 +10,10 @@ import {
 import express from "express";
 
 const router = express.Router();
-router.get("/getPublicKey", getPublicKey);
 router.post("/login", login);
 router.post("/logout", logout);
 router.post("/register", register);
 router.get("/getUserInfo", getUserInfo);
 router.post("/setUserInfo", setUserInfo);
+router.get("/getCode", getCode);
 export default router;

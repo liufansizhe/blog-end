@@ -1,3 +1,4 @@
+import { PORT } from "./config";
 import bodyParser from "body-parser";
 import { checkToken } from "./utils/checkToken";
 import cors from "cors";
@@ -6,7 +7,7 @@ import express from "express";
 import jwtAuth from "./utils/userJwt";
 import redis from "ioredis";
 import { responseFormatter } from "./utils/response";
-import userRouter from "./router/user";
+import routerList from "./router";
 
 const init = async () => {
   const redisClient = new redis({
@@ -42,9 +43,11 @@ const init = async () => {
   app.use(express.static("public"));
   //解析表单数据:application/x-www-form-urlencoded
   app.use(express.urlencoded({ extended: false }));
-  app.use("/api", userRouter);
+  for (let i in routerList) {
+    app.use("/api", (routerList as any)[i]);
+  }
   app.use(error);
-  app.listen(3007, () => {
+  app.listen(PORT, () => {
     console.log("start 3007");
   });
 };

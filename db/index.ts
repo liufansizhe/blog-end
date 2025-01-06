@@ -21,7 +21,7 @@ class Database {
 
   async find(collectionName: string, query = {}) {
     await this.connect();
-    return this.database?.collection(collectionName).find(query);
+    return await this.database?.collection(collectionName).find(query);
   }
 
   async findOne(collectionName: string, query = {}) {
