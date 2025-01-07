@@ -47,7 +47,10 @@ class Database {
     await this.connect();
     return this.database?.collection(collectionName).deleteMany(query);
   }
-
+  async getDocumentsNum(collectionName: string, query = {}) {
+    await this.connect();
+    return this.database?.collection(collectionName).countDocuments(query);
+  }
   async disconnect() {
     await this.client.close();
   }

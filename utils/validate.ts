@@ -30,4 +30,10 @@ export const registerSchema = joi.object({
 export const publishSchema = joi.object({
   title: joi.string().required(),
   content: joi.string().required(),
+  describe: joi.string().max(100).required(),
+});
+
+export const articleListSchema = joi.object({
+  pageSize: joi.string().required(),
+  pageIndex: joi.string().required(),
 });
