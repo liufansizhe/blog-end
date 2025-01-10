@@ -90,3 +90,33 @@ export const getHomeArticleList = async (req: any, res: any) => {
     });
   }
 };
+
+//获取文章
+export const getArticleDetail = async (req: any, res: any) => {
+  const { id } = req.query;
+  const articleInfo =
+    (await (await db.find("articles", { id }))?.toArray()) ?? [];
+  if (articleInfo?.length == 0) {
+    res.sendResponse({
+      success: false,
+    });
+    return;
+  } else {
+    const userInfo = await (
+      await db.find("users", { id: articleInfo?.[0]?.userId })
+    )?.toArray();
+    res.sendResponse({
+      data: {
+        title: articleInfo?.[0]?.title,
+        userAvatar: userInfo?.[0]?.avatar,
+        userName: userInfo?.[0]?.nickName,
+        contentId: articleInfo?.[0]?.id,
+        createTime: articleInfo?.[0]?.createTime,
+        describe: articleInfo?.[0]?.describe,
+        content: articleInfo?.[0]?.content,
+        praise: articleInfo?.[0]?.praise,
+        collect: articleInfo?.[0]?.collect,
+      },
+    });
+  }
+};

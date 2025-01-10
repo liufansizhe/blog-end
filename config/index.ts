@@ -7,6 +7,7 @@ export const NO_TOKEN_REQUEST = [
   "/avatar.png",
   "/api/getCode",
   "/api/getHomeArticleList",
+  "/api/getArticleDetail",
 ];
 //token过期时间
 export const TOKEN_TIME = 3600 * 24;
