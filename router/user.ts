@@ -4,6 +4,7 @@ import {
   login,
   logout,
   register,
+  saveCv,
   setUserInfo,
 } from "../router_handle/user";
 
@@ -16,4 +17,5 @@ router.post("/register", register);
 router.get("/getUserInfo", getUserInfo);
 router.post("/setUserInfo", setUserInfo);
 router.get("/getCode", getCode);
+router.post("/saveCv", saveCv);
 export default router;

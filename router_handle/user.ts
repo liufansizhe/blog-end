@@ -162,3 +162,31 @@ export const getCode = async (req: any, res: any) => {
     res.sendResponse({ message: "验证码发送失败", success: false });
   }
 };
+//保存简介
+export const saveCv = async (req: any, res: any) => {
+  const data = req.body;
+  let result = null;
+  const info =
+    (await (await db.find("cv", { id: req?.auth?.id }))?.toArray()) ?? [];
+  if (info.length > 0) {
+    result = await db.update(
+      "cv",
+      {
+        id: req?.auth?.id,
+      },
+      { $set: data }
+    );
+  } else {
+    result = await db.insert("cv", {
+      id: req?.auth?.id,
+      ...data,
+    });
+  }
+  if (result) {
+    res.sendResponse({ message: "保存成功" });
+  } else {
+    res.sendResponse({ success: false, message: "保存用户信息失败" });
+  }
+};
+//获取简介
+export const getCv = async (req: any, res: any) => {};
